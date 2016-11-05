@@ -2,6 +2,8 @@
 
 StockWatcher is a simple stockprice tracker for Mac OS X. Enter any stock symbol and get instant updates keeping you ahead of the curve!
 
+### [Download Now for Mac OS X](https://github.com/mcarlucci/StockWatcher/releases/download/v1.0.0/StockWatcher.app.zip)
+
 ##Setup
 ```
 npm install
@@ -16,4 +18,7 @@ npm start
 ```
 npm run build
 ```
+
+#### Latest Releases can be found [here](https://github.com/mcarlucci/StockWatcher/releases/)
+
 
