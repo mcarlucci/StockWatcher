@@ -1,0 +1,19 @@
+{
+  "name": "StockWatcher",
+  "version": "1.0.0",
+  "description": "A simple stock price tracker",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . StockWatcher --platform=darwin --arch=x64 --version=1.0.0 --overwrite --icon 'stockWatcher.icns'"
+  },
+  "author": "Matt Carlucci",
+  "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-packager": "^8.1.0",
+    "electron-prebuilt": "^1.4.3"
+  },
+  "dependencies": {
+    "request": "^2.75.0"
+  }
+}
