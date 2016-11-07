@@ -27,8 +27,8 @@ function getStockPrice(ticker = 'goog') {
 
 function newPrice(arr) {
   const currentPrice = arr[0]['l']
-  const points = arr[0]['cp']
-  const yield = arr[0]['c']
+  const points = arr[0]['c']
+  const yield = arr[0]['cp']
   const isPositive = /[+]/i.test(points);
 
   document.getElementById('stockPrice').innerHTML = currentPrice
