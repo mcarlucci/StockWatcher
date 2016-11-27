@@ -4,8 +4,23 @@
 const electron = require('electron')
 const request = require('request')
 
-getStockName()
+let tickerInput = document.getElementById("stockTicker")
 
+// add event listeners for ticker input field
+tickerInput.addEventListener('keyup', companyName, false)
+tickerInput.addEventListener('search', companyName, false)
+
+// handler to get company name
+function companyName() {
+  let input = getInput()
+  if (input) {
+    getCompanyName(input)
+  } else {
+    getCompanyName()
+  }
+}
+
+// get latest stock data for a given stock symbol every second
 setInterval(function() {
   let input = getInput()
   if (input) {
@@ -16,21 +31,11 @@ setInterval(function() {
 }, 1000)
 
 
-document.getElementById("stockTicker").addEventListener("keyup", function() {
-  let input = getInput()
-  if (input) {
-    getStockName(input)
-  } else {
-    getStockName()
-  }
-})
+/*
+ * Core Functions
+ */
 
-// functions
-
-function getInput() {
-  return document.getElementById('stockTicker').value !== '' ? document.getElementById('stockTicker').value : false
-}
-
+// get stock data by ticker symbol
 function getStockPrice(ticker = 'goog') {
   try {
     request(`http://finance.google.com/finance/info?q=${ticker}`, function(error, response, body) {
@@ -43,18 +48,20 @@ function getStockPrice(ticker = 'goog') {
   }
 }
 
-function getStockName(ticker = 'goog') {
+// get company name by ticker symbol
+function getCompanyName(ticker = 'goog') {
   try {
     request(`http://d.yimg.com/aq/autoc?query=${ticker}&region=US&lang=en-US`, function(error, response, body) {
       body = JSON.parse(body)
       body = body.ResultSet.Result[0].name
-      document.getElementById('stockName').innerHTML = body
+      document.getElementById('companyName').innerHTML = body
     })
   } catch(e) {
     console.log(e)
   }
 }
 
+// display latest price data
 function newPrice(arr) {
   const currentPrice = arr[0]['l']
   const points = arr[0]['c']
@@ -76,4 +83,14 @@ function newPrice(arr) {
     document.getElementById('stockPoints').classList.remove('green')
     document.getElementById('stockPoints').classList.add('red')
   }
+}
+
+
+/*
+ * Helper Functions
+ */
+
+// get current input data for stockTicker element
+function getInput() {
+  return document.getElementById('stockTicker').value !== '' ? document.getElementById('stockTicker').value : false
 }
