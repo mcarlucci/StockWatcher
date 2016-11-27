@@ -4,21 +4,20 @@
 const electron = require('electron')
 const request = require('request')
 
-let tickerInput = document.getElementById("stockTicker")
-
-// add event listeners for ticker input field
-tickerInput.addEventListener('keyup', companyName, false)
-tickerInput.addEventListener('search', companyName, false)
-
 // handler to get company name
-function companyName() {
+let companyNameHandler = debounce(function() {
   let input = getInput()
   if (input) {
     getCompanyName(input)
   } else {
     getCompanyName()
   }
-}
+}, 250)
+
+// add event listeners for ticker input field
+let tickerInput = document.getElementById("stockTicker")
+tickerInput.addEventListener('keyup', companyNameHandler, false)
+tickerInput.addEventListener('search', companyNameHandler, false)
 
 // get latest stock data for a given stock symbol every second
 setInterval(function() {
@@ -66,7 +65,7 @@ function newPrice(arr) {
   const currentPrice = arr[0]['l']
   const points = arr[0]['c']
   const yield = arr[0]['cp']
-  const isPositive = /[+]/i.test(points);
+  const isPositive = /[+]/i.test(points)
 
   document.getElementById('stockPrice').innerHTML = currentPrice
   document.getElementById('stockPoints').innerHTML = points
@@ -85,12 +84,31 @@ function newPrice(arr) {
   }
 }
 
+// get current input data for stockTicker element
+function getInput() {
+  return document.getElementById('stockTicker').value !== '' ? document.getElementById('stockTicker').value : false
+}
+
 
 /*
  * Helper Functions
  */
 
-// get current input data for stockTicker element
-function getInput() {
-  return document.getElementById('stockTicker').value !== '' ? document.getElementById('stockTicker').value : false
+ // Returns a function, that, as long as it continues to be invoked, will not
+ // be triggered. The function will be called after it stops being called for
+ // N milliseconds. If `immediate` is passed, trigger the function on the
+ // leading edge, instead of the trailing.
+function debounce(func, wait, immediate) {
+	var timeout
+	return function() {
+		var context = this, args = arguments
+		var later = function() {
+			timeout = null
+			if (!immediate) func.apply(context, args)
+		}
+		var callNow = immediate && !timeout
+		clearTimeout(timeout)
+		timeout = setTimeout(later, wait)
+		if (callNow) func.apply(context, args)
+	}
 }
