@@ -4,14 +4,32 @@
 const electron = require('electron')
 const request = require('request')
 
+getStockName()
+
 setInterval(function() {
-  var getInput = document.getElementById('stockTicker').value !== '' ? document.getElementById('stockTicker').value : false;
-  if (getInput) {
-    getStockPrice(getInput)
+  let input = getInput()
+  if (input) {
+    getStockPrice(input)
   } else {
     getStockPrice()
   }
 }, 1000)
+
+
+document.getElementById("stockTicker").addEventListener("keyup", function() {
+  let input = getInput()
+  if (input) {
+    getStockName(input)
+  } else {
+    getStockName()
+  }
+})
+
+// functions
+
+function getInput() {
+  return document.getElementById('stockTicker').value !== '' ? document.getElementById('stockTicker').value : false
+}
 
 function getStockPrice(ticker = 'goog') {
   try {
@@ -19,6 +37,18 @@ function getStockPrice(ticker = 'goog') {
       body = body.slice(3)
       body = JSON.parse(body)
       newPrice(body)
+    })
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+function getStockName(ticker = 'goog') {
+  try {
+    request(`http://d.yimg.com/aq/autoc?query=${ticker}&region=US&lang=en-US`, function(error, response, body) {
+      body = JSON.parse(body)
+      body = body.ResultSet.Result[0].name
+      document.getElementById('stockName').innerHTML = body
     })
   } catch(e) {
     console.log(e)
