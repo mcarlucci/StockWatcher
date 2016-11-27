@@ -5,11 +5,11 @@ StockWatcher is a simple stock price tracker for Mac OS X. Enter any stock symbo
 ### Features
 - Search any ticker symbol across all major stock markets (NYSE, NASDAQ, London Stock Exchange, Tokyo Stock Exchange, etc.)
 - Get instant updates for any ticker symbol
-- View current stock price, point yield and percent yield for each ticker symbol
+- View current stock price, company name, point yield and percent yield for each ticker symbol
 
 ### [Download Now for Mac OS X](https://github.com/mcarlucci/StockWatcher/releases/download/v1.0.0/StockWatcher-Mac-OS-X.app.zip)
 
-![Stock watcher Interface](https://s11.postimg.org/3wsrf308j/Screen_Shot_2016_11_18_at_2_29_26_PM.png)
+![Stock Watcher Interface](https://s22.postimg.org/a84uy38rl/Screen_Shot_2016_11_27_at_2_55_26_PM.png)
 
 ## For Development
 
@@ -30,5 +30,3 @@ npm run build
 ```
 
 #### Latest Releases can be found [here](https://github.com/mcarlucci/StockWatcher/releases/)
-
-

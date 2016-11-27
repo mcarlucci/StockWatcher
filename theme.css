@@ -25,6 +25,10 @@ body {
   text-transform: none;
 }
 
+.company-name {
+  padding: 0 15px;
+}
+
 .stock-price::before {
   content: '$';
 }
