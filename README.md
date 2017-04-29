@@ -14,18 +14,18 @@ StockWatcher is a simple stock price tracker for Mac OS X. Enter any stock symbo
 
 ## For Development
 
-###Setup
+### Setup
 ```
 git clone git@github.com:mcarlucci/StockWatcher.git && cd StockWatcher
 npm install
 ```
 
-###Run in dev
+### Run in dev
 ```
 npm start
 ```
 
-###Build for Mac OS X
+### Build for Mac OS X
 ```
 npm run build
 ```
