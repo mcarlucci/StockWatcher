@@ -1,6 +1,6 @@
 # StockWatcher ![alt text](http://s21.postimg.org/4ay6xt9pz/Logomakr_4_GLSRg.png "StockWatcher")
 >
-StockWatcher is a simple stock price tracker for Mac OS X. Enter any stock symbol and get instant updates keeping you ahead of the curve! Built with [Electron.js](http://electron.atom.io/), HTML, CSS and love.
+StockWatcher is a simple stock price tracker for Mac OS X. Enter any stock symbol and get instant updates keeping you ahead of the curve! Built with [Electron.js](http://electron.atom.io/), HTML, CSS and :heart:.
 >
 
 ### Features
